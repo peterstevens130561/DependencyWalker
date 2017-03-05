@@ -63,6 +63,7 @@ namespace DependencyWalker
             Console.WriteLine("Done");
         }
 
+  
         private IList<string> GetReferences(string solutionLocation,Project project)
         {
             IList<string> references = new List<string>();

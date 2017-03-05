@@ -23,7 +23,7 @@ namespace Stevpet.Tools.Build
             {
                n.References.ToList().ForEach(a =>
                {
-                   Search(a, a, result, new List<Node>());
+                   Search(n, a, result, new List<Node>());
                });
            });
             return result;
@@ -34,7 +34,7 @@ namespace Stevpet.Tools.Build
             var nextNodes = startNode.References;
             foreach (Node current in nextNodes)
             {
-                if (current == searchNode)
+                if (current.Matches(searchNode))
                 {
                     Circle circle = new Circle();
                     path.ToList().ForEach(node => circle.Add(node));

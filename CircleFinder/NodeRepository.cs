@@ -19,5 +19,10 @@ namespace Stevpet.Tools.Build
         }
 
         public IList<Node> Nodes { get; private set; }
+
+        public Node GetByName(string name)
+        {
+            return Nodes.FirstOrDefault(n => n.Name.Equals(name));
+        }
     }
 }

@@ -32,5 +32,9 @@ namespace Stevpet.Tools.Build
             return Name.ToString();
         }
 
+        internal virtual bool Matches(Node searchNode)
+        {
+            return this == searchNode;
+        }
     }
 }
