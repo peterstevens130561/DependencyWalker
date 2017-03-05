@@ -55,6 +55,7 @@
     <Compile Include="SolutionNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CircleFinderTests.cs" />
+    <Compile Include="SolutionCircleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CircleFinder\CircleFinder.csproj">

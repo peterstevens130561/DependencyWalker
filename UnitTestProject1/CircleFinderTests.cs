@@ -16,7 +16,7 @@ namespace UnitTestProject1
             var node = new Node("a");
             nodeRepository.Add(node);
 
-            IList<ICircle> circles = circlesService.FindCircles(nodeRepository,node);
+            IList<ICircle> circles = circlesService.FindCircles(node);
             Assert.IsNotNull(circles, "Even when there is no circle, there should be a valid list");
             Assert.AreEqual(0, circles.Count, "list should be empty");
         }
@@ -32,7 +32,7 @@ namespace UnitTestProject1
             nodeB.References.Add(nodeA);
             nodeRepository.Add(nodeA);
 
-            IList<ICircle> circles = circlesService.FindCircles(nodeRepository,nodeA);
+            IList<ICircle> circles = circlesService.FindCircles(nodeA);
             Assert.IsNotNull(circles, "Even when there is no circle, there should be a valid list");
             Assert.AreEqual(1, circles.Count, "list should have two circles");
         }
@@ -50,7 +50,7 @@ namespace UnitTestProject1
             nodeC.References.Add(nodeA);
             nodeRepository.Add(nodeA);
 
-            IList<ICircle> circles = circlesService.FindCircles(nodeRepository, nodeA);
+            IList<ICircle> circles = circlesService.FindCircles( nodeA);
             Assert.IsNotNull(circles, "Even when there is no circle, there should be a valid list");
             Assert.AreEqual(1, circles.Count, "list should have two circles");
             var circle=circles[0];
@@ -80,10 +80,9 @@ namespace UnitTestProject1
             nodeF.Add(nodeE);
             nodeH.Add(nodeA);
 
-            IList<ICircle> circles = circlesService.FindCircles(nodeRepository, nodeE);
+            IList<ICircle> circles = circlesService.FindCircles(nodeE);
             Assert.IsNotNull(circles, "Even when there is no circle, there should be a valid list");
             Assert.AreEqual(3, circles.Count, "list should have two circles");
-            var circle = circles[0];
             Assert.AreEqual("e,d,a,c,e",circles[0].ToString());
             Assert.AreEqual("e,d,b,c,e", circles[1].ToString());
             Assert.AreEqual("e,d,b,h,a,c,e", circles[2].ToString());

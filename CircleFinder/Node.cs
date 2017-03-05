@@ -27,5 +27,10 @@ namespace Stevpet.Tools.Build
             return this;
         }
 
+        public override string ToString()
+        {
+            return Name.ToString();
+        }
+
     }
 }

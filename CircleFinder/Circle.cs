@@ -24,7 +24,7 @@ namespace Stevpet.Tools.Build
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(256);
-            Nodes.ToList().ForEach(n => sb.Append(n.Name).Append(","));
+            Nodes.ToList().ForEach(n => sb.Append(n.ToString()).Append(","));
             string result = sb.ToString();
             return result.Remove(result.Length-1);
 

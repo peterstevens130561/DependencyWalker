@@ -8,7 +8,7 @@ namespace Stevpet.Tools.Build
 {
     public class CirclesService
     {
-        public IList<ICircle> FindCircles(NodeRepository nodeRepository,Node startNode)
+        public IList<ICircle> FindCircles(Node startNode)
         {
             var result = new List<ICircle>();
             var path = new List<Node>();
