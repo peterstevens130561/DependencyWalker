@@ -8,10 +8,16 @@ namespace Stevpet.Tools.Build
 {
     public class NodeRepository
     {
-        private IList<Node> nodes = new List<Node>();
+
+        public NodeRepository()
+        {
+            Nodes = new List<Node>();
+        }
         public void Add(Node node)
         {
-            nodes.Add(node);
+            Nodes.Add(node);
         }
+
+        public IList<Node> Nodes { get; private set; }
     }
 }

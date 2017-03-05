@@ -12,11 +12,23 @@ namespace Stevpet.Tools.Build
         {
             var result = new List<ICircle>();
             var path = new List<Node>();
-            Search(startNode,startNode, result,path);
+            Search(startNode, startNode, result, path);
             return result;
         }
 
-        private static void Search(Node searchNode, Node startNode, IList<ICircle> result,IList<Node> path)
+        public IList<ICircle> FindCircles(NodeRepository nodeRepository)
+        {
+            var result = new List<ICircle>();
+            nodeRepository.Nodes.ToList().ForEach(n =>
+            {
+               n.References.ToList().ForEach(a =>
+               {
+                   Search(a, a, result, new List<Node>());
+               });
+           });
+            return result;
+        }
+        private static void Search(Node searchNode, Node startNode, IList<ICircle> result, IList<Node> path)
         {
             path.Add(startNode);
             var nextNodes = startNode.References;
@@ -25,15 +37,17 @@ namespace Stevpet.Tools.Build
                 if (current == searchNode)
                 {
                     Circle circle = new Circle();
-                    path.ToList().ForEach(node =>circle.Add(node));
+                    path.ToList().ForEach(node => circle.Add(node));
                     circle.Add(current);
                     result.Add(circle);
-                } else if (path.Contains(current))
+                }
+                else if (path.Contains(current))
                 {
                     // detected another circle
-                } else
+                }
+                else
                 {
-                    Search(searchNode,current, result,path);
+                    Search(searchNode, current, result, path);
                 }
             }
             path.Remove(startNode);

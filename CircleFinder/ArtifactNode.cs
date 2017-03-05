@@ -22,6 +22,9 @@ namespace Stevpet.Tools.Build
             return SolutionNode.Name + ":" + Name;
         }
 
-
+        public void DependsOn(ArtifactNode artifact)
+        {
+            base.Add(artifact);
+        }
     }
 }
