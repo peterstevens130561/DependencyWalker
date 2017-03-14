@@ -34,7 +34,6 @@ namespace DependencyWalker
             var projectsInSolution = solutionFile.ProjectsInOrder;
             projectsInSolution.ToList().ForEach(p =>
            {
-               Console.WriteLine(p.RelativePath);
                if (p.ProjectType == SolutionProjectType.KnownToBeMSBuildFormat)
                {
                    var solutionFolder = Path.GetFullPath(solutionLocation);
@@ -60,7 +59,6 @@ namespace DependencyWalker
            });
             var solution = new SolutionExtract(solutionLocation, solutionReferences, artifacts);
             solutionRepository.Add(solution);
-            Console.WriteLine("Done");
         }
 
   

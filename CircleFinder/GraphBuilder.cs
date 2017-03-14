@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Stevpet.Tools.Build
 {
-    class GraphBuilder
+   public class GraphBuilder
     {
         private string solutionLocation;
         private readonly NodeRepository artifactRepository;
@@ -26,11 +26,10 @@ namespace Stevpet.Tools.Build
             this.solutionLocation = solutionLocation;
             var solutionFile = SolutionFile.Parse(solutionLocation);
             var projectsInSolution = solutionFile.ProjectsInOrder;
-            var solutionNode = new SolutionNode(solutionLocation);
+            var solutionNode = new SolutionNode(Path.GetFileName(solutionLocation));
             solutionRepository.Add(solutionNode);
             projectsInSolution.ToList().ForEach(p =>
             {
-                Console.WriteLine(p.RelativePath);
                 if (p.ProjectType == SolutionProjectType.KnownToBeMSBuildFormat)
                 {
                     var solutionFolder = Path.GetFullPath(solutionLocation);
@@ -42,7 +41,7 @@ namespace Stevpet.Tools.Build
                         string assemblyName = GetAssemblyName(p, project);
                         if (assemblyName != null)
                         {
-                            var artifact=solutionNode.CreatesArtifact(assemblyName);
+                            var artifact=solutionNode.CreatesArtifact(assemblyName,projectLocation);
                             artifactRepository.Add(artifact);
                         }
 
@@ -51,7 +50,6 @@ namespace Stevpet.Tools.Build
                 }
 
             });
-            Console.WriteLine("Done");
         }
 
         /// <summary>

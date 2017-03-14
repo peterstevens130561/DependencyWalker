@@ -82,10 +82,8 @@ namespace UnitTestProject1
 
             IList<ICircle> circles = circlesService.FindCircles(nodeE);
             Assert.IsNotNull(circles, "Even when there is no circle, there should be a valid list");
-            Assert.AreEqual(3, circles.Count, "list should have two circles");
+            Assert.AreEqual(1, circles.Count, "list should have one circle");
             Assert.AreEqual("e,d,a,c,e",circles[0].ToString());
-            Assert.AreEqual("e,d,b,c,e", circles[1].ToString());
-            Assert.AreEqual("e,d,b,h,a,c,e", circles[2].ToString());
 
         }
         [TestMethod]

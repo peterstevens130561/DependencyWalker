@@ -11,13 +11,14 @@ namespace Stevpet.Tools.Build
     {
 
        
-        public ArtifactNode(SolutionNode parent,string node) : base(node)
+        public ArtifactNode(SolutionNode parent,string node,string projectLocation) : base(node)
         {
             SolutionNode = parent;
+            ProjectLocation = projectLocation;
         }
 
         public SolutionNode SolutionNode { get; private set; }
-        public ProjectCollection ProjectLocation { get; internal set; }
+        public String ProjectLocation { get; internal set; }
 
         public override string ToString()
         {

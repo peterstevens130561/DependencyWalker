@@ -12,9 +12,9 @@ namespace Stevpet.Tools.Build
         {
         }
 
-        public ArtifactNode CreatesArtifact(String artifactName)
+        public ArtifactNode CreatesArtifact(String artifactName,String projectLocation)
         {
-            var artifact = new ArtifactNode(this, artifactName);
+            var artifact = new ArtifactNode(this, artifactName,projectLocation);
             Add(artifact);
             return artifact;
         }

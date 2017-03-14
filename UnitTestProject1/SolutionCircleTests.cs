@@ -18,9 +18,9 @@ namespace UnitTestProject1
             var solutionA = new SolutionNode("SolutionA");
             var solutionB = new SolutionNode("SolutionB");
             var solutionC = new SolutionNode("SolutionC");
-            var artifactA = solutionA.CreatesArtifact("ArtifactA");
-            var artifactB = solutionB.CreatesArtifact("ArtifactB");
-            var artifactC = solutionC.CreatesArtifact("ArtifactC");
+            var artifactA = solutionA.CreatesArtifact("ArtifactA","a");
+            var artifactB = solutionB.CreatesArtifact("ArtifactB","b");
+            var artifactC = solutionC.CreatesArtifact("ArtifactC","c");
 
             // the circle
             artifactA.DependsOn(artifactB);
@@ -33,10 +33,8 @@ namespace UnitTestProject1
             repo.Add(solutionC);
             IList<ICircle> circles = circlesService.FindCircles(repo);
             Assert.IsNotNull(circles, "Even when there is no circle, there should be a valid list");
-            Assert.AreEqual(3, circles.Count, "list should have three circles");
+            Assert.AreEqual(1, circles.Count, "list should have one circle");
             Assert.AreEqual("SolutionA:ArtifactA,SolutionB:ArtifactB,SolutionC:ArtifactC,SolutionA:ArtifactA", circles[0].ToString());
-            Assert.AreEqual("SolutionB:ArtifactB,SolutionC:ArtifactC,SolutionA:ArtifactA,SolutionB:ArtifactB", circles[1].ToString());
-            Assert.AreEqual("SolutionC:ArtifactC,SolutionA:ArtifactA,SolutionB:ArtifactB,SolutionC:ArtifactC", circles[2].ToString());
         }
 
         [TestMethod]
@@ -46,11 +44,11 @@ namespace UnitTestProject1
             var solutionA = new SolutionNode("SolutionA");
             var solutionB = new SolutionNode("SolutionB");
             var solutionC = new SolutionNode("SolutionC");
-            var artifactA = solutionA.CreatesArtifact("ArtifactA");
-            var artifactD = solutionA.CreatesArtifact("ArtifactD");
+            var artifactA = solutionA.CreatesArtifact("ArtifactA","a");
+            var artifactD = solutionA.CreatesArtifact("ArtifactD","d");
 
-            var artifactB = solutionB.CreatesArtifact("ArtifactB");
-            var artifactC = solutionC.CreatesArtifact("ArtifactC");
+            var artifactB = solutionB.CreatesArtifact("ArtifactB","b");
+            var artifactC = solutionC.CreatesArtifact("ArtifactC","c");
 
             // the circle
             artifactA.DependsOn(artifactB);

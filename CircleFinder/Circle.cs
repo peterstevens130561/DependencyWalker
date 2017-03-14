@@ -13,6 +13,13 @@ namespace Stevpet.Tools.Build
             Nodes = new List<Node>();
         }
 
+        public Circle(SolutionNode solutionNode)
+        {
+            SolutionNode = solutionNode;
+            Nodes = new List<Node>();
+        }
+
+        public SolutionNode SolutionNode { get; private set; }
         public ICircle Add(Node startNode)
         {
             Nodes.Add(startNode);
@@ -21,7 +28,7 @@ namespace Stevpet.Tools.Build
 
         public IList<Node> Nodes { get; private set; }
 
-        public override string ToString()
+        public string ToStringX()
         {
             StringBuilder sb = new StringBuilder(256);
             Nodes.ToList().ForEach(n => sb.Append(n.ToString()).Append(","));
@@ -29,5 +36,12 @@ namespace Stevpet.Tools.Build
             return result.Remove(result.Length-1);
 
                     }
+
+        public override string ToString()
+        {
+            var formattingService = new CircleFormattingService(new NodeFormattingService());
+            return formattingService.FormatCircle(this);
+
+        }
     }
 }

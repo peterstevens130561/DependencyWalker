@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Stevpet.Tools.Build;
 
 namespace DependencyWalker
 {
@@ -11,12 +12,34 @@ namespace DependencyWalker
     {
         static void Main(string[] args)
         {
-            ArtifactRepository artifactRepository = new ArtifactRepository();
-            ReferenceRepository referenceRepository = new ReferenceRepository();
-            SolutionRepository solutionRepository = new SolutionRepository();
-            var finder = new DependencyFinder(solutionRepository,artifactRepository,referenceRepository);
+            var artifactRepository = new NodeRepository();
+
+            var solutionRepository = new NodeRepository();
+
+            var finder = new GraphBuilder(solutionRepository, artifactRepository);
+            var circleFormatter = new CircleFormattingService(new NodeFormattingService());
+
             var solutionPaths = Directory.GetFiles("E:/Development/Radiant/Main", "*.sln", SearchOption.AllDirectories);
-            solutionPaths.ToList().ForEach(p => finder.Solution(p));
+            solutionPaths.ToList().ForEach(p => {
+                finder.BuildArtifactsOfSolution(p);
+                });
+            artifactRepository.Nodes.ToList().ForEach(n => {
+                finder.ResolveDependencies((ArtifactNode)n);
+                });
+
+            // Here we've built the graph, would be nice to show it, wouldn't it
+
+            var circleService = new CirclesService();
+            solutionRepository.Nodes.ToList().ForEach(node =>
+           {
+               var circles = circleService.FindCircles(node);
+               if(circles.Any())
+               {
+                   Console.WriteLine($"{node.Name} {circles.Count()}");
+                   circles.ToList().ForEach(circle => Console.WriteLine(circleFormatter.FormatCircle(circle)));
+               }
+
+           });
         }
     }
 }

@@ -8,46 +8,73 @@ namespace Stevpet.Tools.Build
 {
     public class CirclesService
     {
-        public IList<ICircle> FindCircles(Node startNode)
+        /// <summary>
+        /// find all unique circles of which this node is an element
+        /// </summary>
+        /// <param name="searchNode"></param>
+        /// <returns></returns>
+        public IList<ICircle> FindCircles(Node searchNode)
         {
             var result = new List<ICircle>();
-            var path = new List<Node>();
-            Search(startNode, startNode, result, path);
+            searchNode.References.ToList().ForEach(currentNode =>
+            {
+                StartSearch(searchNode, currentNode, result);
+            });
             return result;
         }
 
+
+
         public IList<ICircle> FindCircles(NodeRepository nodeRepository)
         {
-            var result = new List<ICircle>();
+            IList<ICircle> result = null;
             nodeRepository.Nodes.ToList().ForEach(n =>
             {
-               n.References.ToList().ForEach(a =>
+               result = new List<ICircle>();
+                n.References.ToList().ForEach(a =>
                {
-                   Search(n, a, result, new List<Node>());
+                   StartSearch(n, a, result);
                });
+
            });
             return result;
         }
-        private static void Search(Node searchNode, Node startNode, IList<ICircle> result, IList<Node> path)
+
+        private static void StartSearch(Node searchNode, Node currentNode, IList<ICircle> result)
+        {
+            Search(searchNode, currentNode, result, new List<Node>(), new List<Node>());
+        }
+
+        /// <summary>
+        /// Search recursively from startNode for searchNode, adding each found circle to foundCircles.
+        ///
+        /// </summary>
+        /// <param name="searchNode"></param>
+        /// <param name="startNode"></param>
+        /// <param name="foundcircles"></param>
+        /// <param name="path">The path from searchNode to the startNode</param>
+        /// <param name="traversed">The nodes encountered thusfar</param>
+        private static void Search(Node searchNode, Node startNode, IList<ICircle> foundcircles, IList<Node> path,IList<Node>traversed)
         {
             path.Add(startNode);
-            var nextNodes = startNode.References;
-            foreach (Node current in nextNodes)
+
+            foreach (Node currentNode in startNode.References.Where(node => !traversed.Contains(node)))
             {
-                if (current.Matches(searchNode))
+                traversed.Add(currentNode);
+                if (currentNode.Matches(searchNode) && path.Count > 1 && path.Any(n => !n.Matches(searchNode)))
                 {
                     Circle circle = new Circle();
                     path.ToList().ForEach(node => circle.Add(node));
-                    circle.Add(current);
-                    result.Add(circle);
+                    circle.Add(currentNode);
+                    foundcircles.Add(circle);
                 }
-                else if (path.Contains(current))
+                else if (path.Contains(currentNode))
                 {
                     // detected another circle
                 }
                 else
                 {
-                    Search(searchNode, current, result, path);
+                    Search(searchNode, currentNode, foundcircles, path,traversed);
                 }
             }
             path.Remove(startNode);

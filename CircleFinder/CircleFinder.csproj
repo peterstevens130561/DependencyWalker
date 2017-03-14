@@ -48,11 +48,13 @@
   <ItemGroup>
     <Compile Include="ArtifactNode.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="CircleFormattingService.cs" />
     <Compile Include="CirclesService.cs" />
     <Compile Include="GraphBuilder.cs" />
     <Compile Include="ICircle.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeRepository.cs" />
+    <Compile Include="PrettyFormattingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionNode.cs" />
   </ItemGroup>
