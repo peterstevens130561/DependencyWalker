@@ -15,7 +15,7 @@ namespace DependencyWalker
             ReferenceRepository referenceRepository = new ReferenceRepository();
             SolutionRepository solutionRepository = new SolutionRepository();
             var finder = new DependencyFinder(solutionRepository,artifactRepository,referenceRepository);
-            var solutionPaths = Directory.GetFiles("E:/Development/Radiant/Main", "*.sln", SearchOption.AllDirectories);
+            var solutionPaths = Directory.GetFiles(@"E:\Cadence\ESIETooLink\Main", "Bhi.Esie.TooLink.sln", SearchOption.AllDirectories);
             solutionPaths.ToList().ForEach(p => finder.Solution(p));
         }
     }
