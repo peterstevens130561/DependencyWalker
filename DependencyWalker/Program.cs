@@ -18,8 +18,8 @@ namespace DependencyWalker
 
             var finder = new GraphBuilder(solutionRepository, artifactRepository);
             var circleFormatter = new CircleFormattingService(new NodeFormattingService());
+            var solutionPaths = Directory.GetFiles(@"E:\Cadence\ESIETooLink\Main", "Bhi.Esie.Toolink.sln", SearchOption.AllDirectories);
 
-            var solutionPaths = Directory.GetFiles("E:/Development/Radiant/Main", "*.sln", SearchOption.AllDirectories);
             solutionPaths.ToList().ForEach(p => {
                 finder.BuildArtifactsOfSolution(p);
                 });

@@ -11,9 +11,9 @@ namespace Stevpet.Tools.Build
         public Node(string v)
         {
             Name = v;
-            References = new List<Node>();
+            Children = new List<Node>();
         }
-        public IList<Node> References { get; private set; }
+        public IList<Node> Children { get; private set; }
         public string Name { get;private set;}
         public override bool Equals(object o)
         {
@@ -23,7 +23,7 @@ namespace Stevpet.Tools.Build
 
         public Node Add(Node node)
         {
-            References.Add(node);
+            Children.Add(node);
             return this;
         }
 

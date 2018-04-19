@@ -16,7 +16,7 @@ namespace Stevpet.Tools.Build
         public IList<ICircle> FindCircles(Node searchNode)
         {
             var result = new List<ICircle>();
-            searchNode.References.ToList().ForEach(currentNode =>
+            searchNode.Children.ToList().ForEach(currentNode =>
             {
                 StartSearch(searchNode, currentNode, result);
             });
@@ -31,7 +31,7 @@ namespace Stevpet.Tools.Build
             nodeRepository.Nodes.ToList().ForEach(n =>
             {
                result = new List<ICircle>();
-                n.References.ToList().ForEach(a =>
+                n.Children.ToList().ForEach(a =>
                {
                    StartSearch(n, a, result);
                });
@@ -47,21 +47,23 @@ namespace Stevpet.Tools.Build
 
         /// <summary>
         /// Search recursively from startNode for searchNode, adding each found circle to foundCircles.
+        /// 
         ///
         /// </summary>
         /// <param name="searchNode"></param>
         /// <param name="startNode"></param>
         /// <param name="foundcircles"></param>
-        /// <param name="path">The path from searchNode to the startNode</param>
+        /// <param name="path">The p</param>
         /// <param name="traversed">The nodes encountered thusfar</param>
         private static void Search(Node searchNode, Node startNode, IList<ICircle> foundcircles, IList<Node> path,IList<Node>traversed)
         {
             path.Add(startNode);
 
-            foreach (Node currentNode in startNode.References.Where(node => !traversed.Contains(node)))
+            foreach (Node currentNode in startNode.Children.Where(node => !traversed.Contains(node)))
             {
                 traversed.Add(currentNode);
-                if (currentNode.Matches(searchNode) && path.Count > 1 && path.Any(n => !n.Matches(searchNode)))
+                //The Match is overriden by the artifact to check on the solution....
+                if (currentNode.Matches(searchNode) && path.Any(n => !n.Matches(searchNode)))
                 {
                     Circle circle = new Circle();
                     path.ToList().ForEach(node => circle.Add(node));

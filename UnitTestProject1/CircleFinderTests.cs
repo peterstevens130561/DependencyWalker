@@ -28,8 +28,8 @@ namespace UnitTestProject1
             var nodeRepository = new NodeRepository();
             var nodeA = new Node("a");
             var nodeB = new Node("b");
-            nodeA.References.Add(nodeB);
-            nodeB.References.Add(nodeA);
+            nodeA.Children.Add(nodeB);
+            nodeB.Children.Add(nodeA);
             nodeRepository.Add(nodeA);
 
             IList<ICircle> circles = circlesService.FindCircles(nodeA);
@@ -45,9 +45,9 @@ namespace UnitTestProject1
             var nodeA = new Node("a");
             var nodeB = new Node("b");
             var nodeC = new Node("c");
-            nodeA.References.Add(nodeB);
-            nodeB.References.Add(nodeC);
-            nodeC.References.Add(nodeA);
+            nodeA.Children.Add(nodeB);
+            nodeB.Children.Add(nodeC);
+            nodeC.Children.Add(nodeA);
             nodeRepository.Add(nodeA);
 
             IList<ICircle> circles = circlesService.FindCircles( nodeA);
@@ -90,7 +90,7 @@ namespace UnitTestProject1
         public void NodeWithNoReference()
         {
             var nodeA = new Node("a");
-            Assert.AreEqual(0, nodeA.References.Count, "no reference");
+            Assert.AreEqual(0, nodeA.Children.Count, "no reference");
         }
 
         [TestMethod]

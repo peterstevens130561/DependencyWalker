@@ -49,8 +49,8 @@ namespace DependencyWalker
                            artifacts.Add(assemblyName);
                            artifactRepository.Add(artifact);
                        }
-                       var projectReferences = GetReferences(solutionLocation, project);
-                       solutionReferences.AddRange(projectReferences);
+                       var projectReferences = GetProjectReferences(solutionLocation, project);
+                       solutionReferences.AddRange(projectReferences); // this may be wrong
 
                        ProjectCollection.GlobalProjectCollection.UnloadProject(project);
                    }
@@ -62,7 +62,7 @@ namespace DependencyWalker
         }
 
   
-        private IList<string> GetReferences(string solutionLocation,Project project)
+        private IList<string> GetProjectReferences(string solutionLocation,Project project)
         {
             IList<string> references = new List<string>();
             project.Xml.ItemGroups.ToList().ForEach(ige =>

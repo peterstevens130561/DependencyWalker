@@ -1,33 +1,34 @@
-﻿using Microsoft.Build.Construction;
-using Microsoft.Build.Evaluation;
+﻿//using Microsoft.Build.Construction;
+//using Microsoft.Build.Evaluation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.Workspace.Extensions.MSBuild;
 
 namespace Stevpet.Tools.Build
 {
    public class GraphBuilder
     {
-        private string solutionLocation;
-        private readonly NodeRepository artifactRepository;
-        private readonly NodeRepository solutionRepository;
+        private string _solutionLocation;
+        private readonly NodeRepository _artifactRepository;
+        private readonly NodeRepository _solutionRepository;
 
         public GraphBuilder(NodeRepository solutionRepository,NodeRepository artifactRepository)
         {
-            this.solutionRepository = solutionRepository;
-            this.artifactRepository = artifactRepository;
+            this._solutionRepository = solutionRepository;
+            this._artifactRepository = artifactRepository;
         }
         public void BuildArtifactsOfSolution(String solutionLocation)
         {
 
-            this.solutionLocation = solutionLocation;
+            this._solutionLocation = solutionLocation;
             var solutionFile = SolutionFile.Parse(solutionLocation);
             var projectsInSolution = solutionFile.ProjectsInOrder;
             var solutionNode = new SolutionNode(Path.GetFileName(solutionLocation));
-            solutionRepository.Add(solutionNode);
+            _solutionRepository.Add(solutionNode);
             projectsInSolution.ToList().ForEach(p =>
             {
                 if (p.ProjectType == SolutionProjectType.KnownToBeMSBuildFormat)
@@ -42,7 +43,7 @@ namespace Stevpet.Tools.Build
                         if (assemblyName != null)
                         {
                             var artifact=solutionNode.CreatesArtifact(assemblyName,projectLocation);
-                            artifactRepository.Add(artifact);
+                            _artifactRepository.Add(artifact);
                         }
 
                         ProjectCollection.GlobalProjectCollection.UnloadProject(project);
@@ -62,7 +63,7 @@ namespace Stevpet.Tools.Build
             var dependencies = GetDependencies(project);
             dependencies.ToList().ForEach(dependency =>
            {
-               var dependencyNode = (ArtifactNode)artifactRepository.GetByName(dependency);
+               var dependencyNode = (ArtifactNode)_artifactRepository.GetByName(dependency);
                if (dependencyNode !=null)
                {
                    artifactNode.DependsOn(dependencyNode);
@@ -90,6 +91,7 @@ namespace Stevpet.Tools.Build
         private static string GetAssemblyName(ProjectInSolution p, Project project)
         {
             string assemblyName = null;
+
             if (p.RelativePath.EndsWith(".vcxproj"))
             {
                 assemblyName = p.ProjectName;
