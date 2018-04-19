@@ -1,4 +1,5 @@
-﻿using Microsoft.Build.Construction;
+﻿
+using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using System;
 using System.Collections.Generic;
