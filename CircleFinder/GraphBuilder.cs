@@ -1,12 +1,12 @@
-﻿//using Microsoft.Build.Construction;
-//using Microsoft.Build.Evaluation;
+﻿using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.Workspace.Extensions.MSBuild;
+//using Microsoft.VisualStudio.Workspace.Extensions.MSBuild;
 
 namespace Stevpet.Tools.Build
 {
