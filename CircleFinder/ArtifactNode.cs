@@ -30,7 +30,7 @@ namespace Stevpet.Tools.Build
             base.Add(artifact);
         }
 
-        internal override bool  Matches(Node otherNode)
+        public override bool  Matches(INode otherNode)
         {
             SolutionNode otherSolutionNode= otherNode as SolutionNode;
             return this.SolutionNode == otherSolutionNode;

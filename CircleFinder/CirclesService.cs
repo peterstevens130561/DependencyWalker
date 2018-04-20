@@ -13,7 +13,7 @@ namespace Stevpet.Tools.Build
         /// </summary>
         /// <param name="searchNode"></param>
         /// <returns></returns>
-        public IList<ICircle> FindCircles(Node searchNode)
+        public IList<ICircle> FindCircles(INode searchNode)
         {
             var result = new List<ICircle>();
             searchNode.Children.ToList().ForEach(currentNode =>
@@ -40,9 +40,9 @@ namespace Stevpet.Tools.Build
             return result;
         }
 
-        private static void StartSearch(Node searchNode, Node currentNode, IList<ICircle> result)
+        private static void StartSearch(INode searchNode, INode currentNode, IList<ICircle> result)
         {
-            Search(searchNode, currentNode, result, new List<Node>(), new List<Node>());
+            Search(searchNode, currentNode, result, new List<INode>(), new List<INode>());
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Stevpet.Tools.Build
         /// <param name="foundcircles"></param>
         /// <param name="path">The p</param>
         /// <param name="traversed">The nodes encountered thusfar</param>
-        private static void Search(Node searchNode, Node startNode, IList<ICircle> foundcircles, IList<Node> path,IList<Node>traversed)
+        private static void Search(INode searchNode, INode startNode, IList<ICircle> foundcircles, IList<INode> path,IList<INode>traversed)
         {
             path.Add(startNode);
 

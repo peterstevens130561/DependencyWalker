@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Stevpet.Tools.Build
 {
-    public class Node
+    public class Node : INode
     {
         public Node(string v)
         {
             Name = v;
-            Children = new List<Node>();
+            Children = new List<INode>();
         }
-        public IList<Node> Children { get; private set; }
+        public IList<INode> Children { get; private set; }
         public string Name { get;private set;}
         public override bool Equals(object o)
         {
@@ -21,7 +21,12 @@ namespace Stevpet.Tools.Build
             return !(other == null || other.Name != this.Name);
         }
 
-        public Node Add(Node node)
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
+        public Node Add(INode node)
         {
             Children.Add(node);
             return this;
@@ -32,7 +37,7 @@ namespace Stevpet.Tools.Build
             return Name.ToString();
         }
 
-        internal virtual bool Matches(Node searchNode)
+        public virtual bool Matches(INode searchNode)
         {
             return this == searchNode;
         }

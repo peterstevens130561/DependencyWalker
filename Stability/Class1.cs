@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stevpet.Tools.Build
+namespace Stability
 {
-    public interface ICircle
+    public class Class1
     {
-
-         ICircle Add(INode node);
-
-        IList<INode> Nodes { get; }
     }
 }

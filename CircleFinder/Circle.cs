@@ -10,23 +10,23 @@ namespace Stevpet.Tools.Build
     {
         public Circle()
         {
-            Nodes = new List<Node>();
+            Nodes = new List<INode>();
         }
 
         public Circle(SolutionNode solutionNode)
         {
             SolutionNode = solutionNode;
-            Nodes = new List<Node>();
+            Nodes = new List<INode>();
         }
 
         public SolutionNode SolutionNode { get; private set; }
-        public ICircle Add(Node startNode)
+        public ICircle Add(INode startNode)
         {
             Nodes.Add(startNode);
             return this;
         }
 
-        public IList<Node> Nodes { get; private set; }
+        public IList<INode> Nodes { get; private set; }
 
         public string ToStringX()
         {

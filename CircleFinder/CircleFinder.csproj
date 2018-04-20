@@ -83,6 +83,7 @@
     <Compile Include="CirclesService.cs" />
     <Compile Include="GraphBuilder.cs" />
     <Compile Include="ICircle.cs" />
+    <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeRepository.cs" />
     <Compile Include="PrettyFormattingService.cs" />
