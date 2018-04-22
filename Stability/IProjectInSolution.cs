@@ -1,7 +1,6 @@
 ﻿namespace BHI.ArchitectureTools.StabilityCalculator
 {
-    public interface IStabilityCalculator
+    public  interface IProjectInSolution
     {
-        void Execute();
     }
 }

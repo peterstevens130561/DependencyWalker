@@ -1,4 +1,4 @@
-﻿using Stevpet.Tools.Build;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace BHI.ArchitectureTools.StabilityCalculator
     /// <summary>
     /// A node definition that is used for the stability calculations
     /// </summary>
-    interface IStabilityNode : INode
+    interface IStabilityNode
     {
         int FanIn { get; set; }
         int FanOut { get; set; }

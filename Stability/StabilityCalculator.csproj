@@ -67,19 +67,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProjectInSolution.cs" />
     <Compile Include="ISolutionParser.cs" />
     <Compile Include="IStabilityCalculator.cs" />
     <Compile Include="IStabilityNode.cs" />
-    <Compile Include="ProjectGraphBuilder.cs" />
+    <Compile Include="ProjectInSolutionSeam.cs" />
     <Compile Include="SolutionParser.cs" />
     <Compile Include="StabilityCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CircleFinder\CircleFinder.csproj">
-      <Project>{bd12d691-5f2b-420d-a744-274597000539}</Project>
-      <Name>CircleFinder</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
