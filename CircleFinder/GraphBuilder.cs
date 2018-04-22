@@ -33,12 +33,12 @@ namespace Stevpet.Tools.Build
             {
                 if (p.ProjectType == SolutionProjectType.KnownToBeMSBuildFormat)
                 {
+                    
                     var solutionFolder = Path.GetFullPath(solutionLocation);
                     var projectLocation = Path.Combine(Path.GetDirectoryName(solutionFolder), p.RelativePath);
                     if (File.Exists(projectLocation))
                     {
                         var project = new Project(projectLocation);
-
                         string assemblyName = GetAssemblyName(p, project);
                         if (assemblyName != null)
                         {

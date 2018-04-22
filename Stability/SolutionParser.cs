@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stability
+namespace BHI.ArchitectureTools.StabilityCalculator
 {
-    public class Class1
+    public class SolutionParser : ISolutionParser
     {
     }
 }

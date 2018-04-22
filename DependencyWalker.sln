@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleFinder", "CircleFinde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisibleDependencies", "VisibleDependencies\VisibleDependencies.csproj", "{C67DD64D-4270-46E3-B494-DDC3656DA265}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stability", "Stability\Stability.csproj", "{53FFD01C-0606-4630-99ED-E24CE0ECE874}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StabilityCalculator", "Stability\StabilityCalculator.csproj", "{53FFD01C-0606-4630-99ED-E24CE0ECE874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stability.UnitTest", "Stability.UnitTest\Stability.UnitTest.csproj", "{4613044B-A302-4CD2-A495-62A2E4E445FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StabilityCalculator.UnitTests", "Stability.UnitTest\StabilityCalculator.UnitTests.csproj", "{4613044B-A302-4CD2-A495-62A2E4E445FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
