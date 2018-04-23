@@ -67,11 +67,8 @@
       <Name>StabilityCalculator</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\DependencyWalker\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\CircleFinder.csproj" />
     <Content Include="Resources\SimpleSolution.sln">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

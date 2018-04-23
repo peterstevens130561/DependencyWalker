@@ -15,5 +15,6 @@ namespace BHI.ArchitectureTools.StabilityCalculator
         {
             this.p = p;
         }
+
     }
 }
