@@ -63,7 +63,7 @@ namespace BHI.ArchitectureTools.StabilityCalculator.UnitTests
         [TestMethod]
         public void Parse_SimpleSolution_ThirdAssemblyNameProjectNameIsCircleFinder()
         {
-            Assert.AreEqual("CircleFinder", projects[1].AssemblyName);
+            Assert.AreEqual("CircleFinder", projects[2].AssemblyName);
         }
 
         private void OnProject(IProjectInSolution project)
