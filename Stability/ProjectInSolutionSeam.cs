@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 
 namespace BHI.ArchitectureTools.StabilityCalculator
 {
     public class ProjectInSolution : IProjectInSolution
     {
-        private Microsoft.Build.Construction.ProjectInSolution p;
-
-        public ProjectInSolution(Microsoft.Build.Construction.ProjectInSolution p)
+        public ProjectInSolution(String assemblyName,String projectFile)
         {
-            this.p = p;
+            AssemblyName = assemblyName;
+            ProjectFile = projectFile;
         }
 
+        public string AssemblyName { get; private set; }
+
+        public string ProjectFile { get; private set; }
     }
 }

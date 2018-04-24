@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Build.Evaluation;
+using System;
 
 namespace BHI.ArchitectureTools.StabilityCalculator
 {
@@ -7,7 +8,7 @@ namespace BHI.ArchitectureTools.StabilityCalculator
     /// </summary>
     public interface ISolutionParser
     {
-        Action<ProjectInSolution> OnProject { get; set; }
+        Action<IProjectInSolution> OnProject { get; set; }
 
         void Parse(string resource);
     }

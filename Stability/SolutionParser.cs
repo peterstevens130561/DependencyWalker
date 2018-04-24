@@ -10,12 +10,23 @@ namespace BHI.ArchitectureTools.StabilityCalculator
 {
     public class SolutionParser : ISolutionParser
     {
-        public Action<ProjectInSolution> OnProject { get; set; }
+        public Action<IProjectInSolution> OnProject { get; set; }
 
         public void Parse(string solutionFile)
         {
             var solution = SolutionFile.Parse(solutionFile);
-            solution.ProjectsInOrder.ToList().ForEach(p => OnProject.Invoke(new ProjectInSolution(p)));
+        
+            solution.ProjectsInOrder.ToList().ForEach(p =>
+            {
+                string pathToProject = p.AbsolutePath;
+                var project = new Project(pathToProject);
+
+                var assemblyName = project.Properties.First(prop => prop.Name == "AssemblyName").EvaluatedValue;
+                var projectInSolution = new ProjectInSolution(assemblyName,pathToProject);
+                OnProject.Invoke(projectInSolution);
+                ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+            }
+            );
         }
     }
 }
